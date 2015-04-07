@@ -1,0 +1,75 @@
+﻿<section>
+    <div >
+
+        <!-- Formulário -->
+        <div class="bubble clientForm">
+            <div class="rectangle"><h2>Preencha os seus dados</h2></div>
+            <div class="info" style="padding-bottom:10px;">
+                <p><label>Nome:</label>
+                <input  class="inputMedium" type="text" id="name" ng-model="myForm.name"></p>
+
+                <p><label>Email:</label>
+                    <input  class="inputMedium" type="text" id="name" ng-model="myForm.email"></p>
+
+                <p><label>Morada:</label>
+                    <input  class="inputMedium" type="text" id="morada" ng-model="myForm.morada"></p>
+
+                <p><label>Cidade:</label>
+                    <input  class="inputMedium" type="text" id="cidade" ng-model="myForm.cidade"></p>
+
+                <p><label>Código Postal:</label>
+                    <input type="text" id="codigoPostal1" ng-model="myForm.codigoPostal1" class="inputCp1" maxlength="8">&nbsp;
+                    <input type="text" id="codigoPostal2" ng-model="myForm.codigoPostal2" class="inputCp2">
+                </p>
+
+                <p><label>Informações&nbsp;adicionais:</label><br>
+                    <textarea  class="inputMediumFull" name="informacoes" id="informacoes" rows="4" cols="80" ng-model="myForm.informacoes"></textarea></p>
+            </div>
+
+            <div class="back">
+                <a href="#home">&lt;&lt; Voltar</a>
+            </div>
+        </div>
+
+        <div class="finalColumn">
+            <div class="bubble finalOrders">
+
+                <div class="rectangle"><h2>Encomenda a efetuar</h2></div>
+                <div class="info" style="padding-bottom:10px;">
+                    <div class="order" ng-repeat="order in orders">
+                        <div class="itemFinal">
+                            <div class="title">{{order.name}} {{order.model}}</div>
+                            <div class="price">{{order.price}} &euro;</div>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <div class="total" >
+                        <div class="title">Total</div>
+                        <div class="price">{{orderTotal}} &euro;</div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="bubble final">
+
+                <div class="info">
+                    <button class="buttonM modern btnAction blue" ng-click="buyOrder();" ><span class="glyphicon glyphicon-shopping-cart"></span> Encomendar</button>
+                </div>
+
+                <div class="nota">
+                Nota: Após fazer a encomenda, receberá um e-mail a confirmar a disponibilidade dos artigos da sua encomenda e os dados para pagamento (valor da encomenda acrescido de portes de envio, caso se aplique e NIB para transferência bancária).
+<br>A encomenda será enviada para a morada indicada no dia útil seguinte à confirmação do pagamento.
+<br>Para encomendas iguais ou superiores a 25€, oferecemos os portes de envio.
+<br>
+<br>Para qualquer outra questão, por favor envie um e-mail para <a href="mailto:kialoo@kialoo.pt">kialoo@kialoo.pt</a>
+                </div>
+            </div>
+        </div>
+
+        <div style="clear:both;"></div>
+
+    </div>
+
+</section>
