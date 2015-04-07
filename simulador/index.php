@@ -1,5 +1,5 @@
 ﻿<?php
-if ($_REQUEST["red"]) {
+if (isset($_REQUEST["red"])) {
     $transparentFilename = "_transparent";
 } else {
     $transparentFilename = "transparent";

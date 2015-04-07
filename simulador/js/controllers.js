@@ -1,4 +1,4 @@
-﻿var baseUrl = "http://www.kialoo.pt/site/angular.php";
+﻿var baseUrl = "http://www.kialoolocal.pt/site/angular.php";
 var spaceWidth = 40;
 var objectWidth = 155;
 
@@ -86,11 +86,18 @@ myApp.controller('HomeController', function ($scope, $http, sharedProperties) {
         $scope.categories = data;
         $scope.selectedCategory = data[0];
         $('.objects').scrollTop(1).scrollTop(0);
+        $scope.sizeSelected = 2;
     });
 
     $scope.setCategory = function (newCategory) {
         $scope.selectedCategory = newCategory;
         $('.objects').scrollTop(1).scrollTop(0);
+        if(newCategory.id == "13") { // Pendentes
+            $scope.selectedCollection = $scope.collections[3]; // Set Collection Medalhões
+            //$scope.selectSize(2); // Set Medium Size
+        } else {
+            $scope.selectedCollection = $scope.collections[0]; // Set First Collection
+        }
 
     }
 
@@ -169,6 +176,7 @@ myApp.controller('HomeController', function ($scope, $http, sharedProperties) {
 
     $scope.selectObject = function (object) {
         $scope.selectedObject = object;
+        console.log(object);
 
         // Select Model
         if (object.models.length > 0) {
@@ -188,11 +196,13 @@ myApp.controller('HomeController', function ($scope, $http, sharedProperties) {
         );
 
         // Set Selected size
+
         if ($scope.selectedObject != null && $scope.selectedObject.sizes != null && $scope.selectedObject.sizes.length > 0) {
             $scope.sizeSelected = $scope.selectedObject.sizes[0];
         } else {
             $scope.sizeSelected = 0;
         }
+
     }
 
     // Set class of selected object
