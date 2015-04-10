@@ -92,7 +92,7 @@ myApp.controller('HomeController', function ($scope, $http, sharedProperties) {
     $scope.setCategory = function (newCategory) {
         $scope.selectedCategory = newCategory;
         $('.objects').scrollTop(1).scrollTop(0);
-        if(newCategory.id == "13") { // Pendentes
+        if(newCategory.id == "15") { // Pendentes
             $scope.selectedCollection = $scope.collections[3]; // Set Collection Medalhões
             //$scope.selectSize(2); // Set Medium Size
         } else {

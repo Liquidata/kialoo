@@ -59,7 +59,7 @@
             <div class="bubbleTitle bubbleLeft" style="float:left;">{{selectedCategory.placeholder_pt}}</div>
             <div style="float:left;">
                 <div class="collection" ng-repeat="item in collections | filter: { placeholder_pt : selectedCategory.placeholder_pt }">
-                    <a ng-click="setCollection(item)" ng-class="getCollectionClass(item)" ng-show="item.placeholder_pt != 'Pendentes'">
+                    <a ng-click="setCollection(item)" ng-class="getCollectionClass(item)">
                         <div  class="title">{{item.name}}</div>
                     </a>
                 </div>
@@ -68,7 +68,7 @@
         <div style="clear:both;"></div>
 
         <!-- Show Sizes -->
-        <div class="sizes" ng-show="selectedCategory.placeholder_pt != 'Pendentes'">
+        <div class="sizes">
 
             <button type="button" class="buttonS modernSmall buttonSize" ng-click="selectSize(2)" ng-show="showSize(2)" ng-class="getSizeClass(2)">M;</button>
             <button type="button" class="buttonS modernSmall buttonSize" ng-click="selectSize(3)" ng-show="showSize(3)" ng-class="getSizeClass(3)">L</button>

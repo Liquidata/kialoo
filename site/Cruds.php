@@ -14,7 +14,7 @@
     $cruds[$crud->dictionary] = $crud;
 
     // List Items
-    $crud = new Crud("cm_listsItems");
+    $crud = new Crud("cm_listsitems");
     $crud->title = "Items";
     $crud->showPrimaryKey = true;
     $button = new CrudButton();
