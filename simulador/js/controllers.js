@@ -1,6 +1,8 @@
 ﻿var baseUrl = "http://www.kialoolocal.pt/site/angular.php";
 var spaceWidth = 40;
 var objectWidth = 155;
+var categoryIdMedalhas = 13;
+var indexCollectionMedalhas = 3; // Index da coleção onde começam as medalhas
 
 myApp.service('sharedProperties', function() {
     var orders = [];
@@ -55,6 +57,16 @@ myApp.directive('imageonload', function() {
 
                 $('.carousel').carousel();
 
+                // Set Size
+                /*
+                var size = 800;
+                $(".object").each(function(i, object) {
+
+                    size += $(object).width();
+                });
+                $scope.styleObjectsWidth = { width: String(size + 'px') };
+                */
+
             });
         }
     };
@@ -73,6 +85,7 @@ myApp.controller('HomeController', function ($scope, $http, sharedProperties) {
     $scope.sizeM = false;
     $scope.sizeL = false;
     $scope.sizeSelected = 0;
+    $scope.selectedSize = "botoes";
 
     $scope.orders = sharedProperties.getOrders();
     $scope.orderTotal = sharedProperties.calculateTotal();
@@ -90,12 +103,22 @@ myApp.controller('HomeController', function ($scope, $http, sharedProperties) {
     });
 
     $scope.setCategory = function (newCategory) {
+        $('#objects').scrollLeft(0);
+
         $scope.selectedCategory = newCategory;
         $('.objects').scrollTop(1).scrollTop(0);
-        if(newCategory.id == "15") { // Pendentes
-            $scope.selectedCollection = $scope.collections[3]; // Set Collection Medalhões
+        if(newCategory.id == categoryIdMedalhas) { // Pendentes
+            $scope.selectedSize = "medalhas";
+            $scope.selectedCollection = $scope.collections[indexCollectionMedalhas]; // Set Collection Medalhões
+            $("body").addClass("medalhas");
+            $("body").removeClass("botoes");
             //$scope.selectSize(2); // Set Medium Size
         } else {
+            $scope.selectedSize = "botoes";
+            $("body").addClass("botoes");
+            $("body").removeClass("medalhas");
+
+
             $scope.selectedCollection = $scope.collections[0]; // Set First Collection
         }
 
@@ -103,6 +126,7 @@ myApp.controller('HomeController', function ($scope, $http, sharedProperties) {
 
     $scope.categoryFilterFn = function (object) {
         var result = object["idcategory"] == $scope.selectedCategory["id"];
+
         return result;
     }
 
@@ -170,13 +194,13 @@ myApp.controller('HomeController', function ($scope, $http, sharedProperties) {
         $scope.objects = data;
 
         //$scope.selectObject(data[0]);
+
         $scope.styleObjectsWidth = { width: String(data.length * objectWidth) + 'px' };
 
     });
 
     $scope.selectObject = function (object) {
         $scope.selectedObject = object;
-        console.log(object);
 
         // Select Model
         if (object.models.length > 0) {
@@ -256,14 +280,6 @@ myApp.controller('HomeController', function ($scope, $http, sharedProperties) {
         });
     }
 
-    $scope.getObjectsWidth = function()
-    {
-        if($scope.objects != null) {
-            return String($scope.objects.length * 3 * 185) + "px";
-        } else {
-            return 0;
-        }
-    }
     // *****************************************
     //   Models
     // *****************************************
@@ -303,6 +319,13 @@ myApp.controller('HomeController', function ($scope, $http, sharedProperties) {
             return false;
         }
     }
+
+    // *****************************************
+    // Sizes
+    // *****************************************
+    $http.get(baseUrl + '?action=getSizes').success(function(data) {
+        $scope.sizes = data;
+    });
 
     // *****************************************
     //   Chunks
@@ -455,6 +478,16 @@ myApp.controller('HomeController', function ($scope, $http, sharedProperties) {
 
     }
 
+    $scope.setSize = function()
+    {
+        // Set Size
+        var size = 800;
+        $(".object").each(function(i, object) {
+
+            size += $(object).width();
+        });
+        $scope.styleObjectsWidth = { width: String(size + 'px') };
+    }
 
     // *****************************************
     // Suggestions

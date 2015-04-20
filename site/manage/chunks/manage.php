@@ -21,6 +21,8 @@
             	    include Settings::$locationAdmin . "dashboard/blocks/breadcrumb.php";
 
             	    $menu = new Menu(2); // Chunks
+                    $menu->getAttribute("idcollection")->typeFilter = "SELECT id FROM collections WHERE placeholder_pt = 'Botões'";
+
 
             	    echo $menu->adminShowContents();
 

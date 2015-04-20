@@ -16,9 +16,9 @@
         <div style="clear:both;"></div>
 
         <!-- List Objects -->
-        <div class="objects bubble showScrollbar">
-           <div class="objectsInner" ng-style="styleObjectsWidth">
-                <div class="object" ng-repeat="item in objects | filter:categoryFilterFn" >
+        <div id="objects" class="objects bubble showScrollbar">
+           <div id="objectsInner" class="objectsInner" ng-style="setSize">
+                <div id="object" class="object" ng-repeat="item in objects | filter:categoryFilterFn" >
                     <a ng-click="switchObject(item.id)" ><img rel="tooltip" data-html="true" data-placement="bottom" ng-class="getObjectClass(item.id)"  ng-src="{{item.image_small}}" title="{{item.name}} | {{item.price}} &euro; <br> Clique para selecionar"/></a>
                 </div>
             </div>
@@ -69,10 +69,10 @@
 
         <!-- Show Sizes -->
         <div class="sizes">
-
-            <button type="button" class="buttonS modernSmall buttonSize" ng-click="selectSize(2)" ng-show="showSize(2)" ng-class="getSizeClass(2)">M;</button>
-            <button type="button" class="buttonS modernSmall buttonSize" ng-click="selectSize(3)" ng-show="showSize(3)" ng-class="getSizeClass(3)">L</button>
-
+            <button ng-repeat="item in sizes" type="button" class="buttonS modernSmall buttonSize" ng-click="selectSize(item.id)" ng-show="showSize(item.id)" ng-class="getSizeClass(item.id)">
+                <span ng-show="selectedSize == 'botoes'">{{item.botoes}}</span>
+                <span ng-show="selectedSize == 'medalhas'">{{item.medalhas}}</span>
+            </button>
         </div>
 
         <!-- Show Chunks -->

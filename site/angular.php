@@ -40,6 +40,18 @@
         }
     }
 
+    if ($_REQUEST["action"] == "getSizes") {
+        $database->sqlGet("SELECT * FROM sizes");
+        while($row = $database->sqlRow()) {
+            $row["id"] = $row["id"];
+            $row["botoes"] = $row["name_" . $base->language];
+            $row["medalhas"] = $row["medalhas_" . $base->language];
+            $data[] = $row;
+
+
+        }
+    }
+
     if ($_REQUEST["action"] == "getObjects") {
         $menu = new Menu(1);
         $contents = $menu->getContents();

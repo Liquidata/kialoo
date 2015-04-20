@@ -21,7 +21,7 @@
             	    include Settings::$locationAdmin . "dashboard/blocks/breadcrumb.php";
 
             	    $menu = new Menu(2); // Chunks
-                    fb($menu);
+
                     $menu->titles['pt'] = "Medalhas";
 
                     $settings = array();
@@ -41,8 +41,10 @@
                             )
                         );
 
-                    $menu->getAttribute("idcollection")->filterAdmin = false;
-
+                    //$menu->getAttribute("idcollection")->filterAdmin = false;
+                    $menu->getAttribute("idcollection")->typeFilter = "SELECT id FROM collections WHERE placeholder_pt = 'Medalhas'";
+                    $menu->getAttribute("size")->typeFieldDisplay = 'medalhas_pt';
+                    fb($menu);
             	    echo $menu->adminShowContents($settings);
 
             	?>
